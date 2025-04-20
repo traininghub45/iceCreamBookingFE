@@ -1,0 +1,37 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { LandingRoutingModule } from './landing-routing.module';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { PrimeNgModule } from '../primeng/primeng.module';
+import { AddBookingComponent } from './add-booking/add-booking.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OurServicesComponent } from './our-services/our-services.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+
+@NgModule({
+  declarations: [
+    HomeComponent,
+    AboutComponent,
+    ContactComponent,
+    NavbarComponent,
+    FooterComponent,
+    AddBookingComponent,
+    OurServicesComponent
+    
+  ],
+  imports: [
+    CommonModule,
+    LandingRoutingModule,
+    PrimeNgModule,
+    ReactiveFormsModule,
+    FormsModule,
+    LeafletModule
+  ]
+})
+export class LandingModule { }

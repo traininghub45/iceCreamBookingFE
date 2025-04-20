@@ -1,0 +1,57 @@
+/* General Navbar Styling */
+.navbar {
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 8px #ffffff;
+    background-image:  url("../../../assets/images/istockphoto.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  /* Navbar Brand Styling */
+  .navbar-brand {
+    color: #ffffff !important;
+  }
+  
+  /* Logo Styling */
+  .logo {
+    height: 40px;
+    width: auto;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .logo:hover {
+    transform: rotate(360deg) scale(1.1);
+  }
+  
+  /* Navbar Link Styling */
+  .nav-link {
+    color: #ffffff !important;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Close Button for Mobile */
+  .btn-close {
+    color: #ffffff;
+    opacity: 1;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+  }
+  
+  .btn-close:hover {
+    color: #dfdcdc; /* Optional: Change color on hover */
+    opacity: 1;
+  }
+  
+  @media (max-width: 991px) {
+    .navbar-collapse { /* Dark background for mobile menu */
+      padding: 1rem;
+    }
+  }
+  

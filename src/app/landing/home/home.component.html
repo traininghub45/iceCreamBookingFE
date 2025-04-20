@@ -1,0 +1,51 @@
+<div class="layout-style">
+    <app-navbar></app-navbar>
+    <div class="container mt-5">
+        <!-- Hero Section -->
+        <div class="row mb-5 hero-section">
+            <div class="col-md-6 d-flex align-items-center">
+                <div class="text-center hero-content">
+                    <h1 class="display-4">{{ businessName }}</h1>
+                    <h2 class="lead">{{ tagline }}</h2>
+                    <p class="mt-3">{{ introduction }}</p>
+                    <a [routerLink]="['/about']" class="btn btn-primary mt-3" aria-label="Learn More about our services">Learn More</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img @fadeIn class="img-fluid hero-image rounded" alt="{{ businessName }}" src="{{ heroImage }}" />
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="row mb-5 align-items-center services-section">
+            <div class="col-md-6">
+                <img @slideIn class="img-fluid service-image rounded" alt="{{ servicesTitle }}" src="{{ servicesImage }}" />
+            </div>
+            <div class="col-md-6">
+                <div class="text-center services-content">
+                    <h2>{{ servicesTitle }}</h2>
+                    <h3>{{ servicesDescription }}</h3>
+                    <p [innerHTML]="servicesContent"></p>
+                    <a [routerLink]="['/services']" class="btn btn-primary mt-3" aria-label="Explore our services">Explore Services</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking and Offers Section -->
+        <div class="row mb-5 align-items-center booking-section">
+            <div class="col-md-6">
+                <div class="text-center booking-content">
+                    <h2>{{ bookingTitle }}</h2>
+                    <h3>{{ bookingDescription }}</h3>
+                    <p [innerHTML]="bookingContent"></p>
+                    <a [routerLink]="['/booking']" class="btn btn-primary mt-3" aria-label="Book your ice cream truck">Book Now</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img @slideIn class="img-fluid booking-image rounded" alt="{{ bookingTitle }}" src="{{ bookingImage }}" />
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+

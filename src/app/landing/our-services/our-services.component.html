@@ -1,0 +1,42 @@
+<div class="layout-style">
+    <app-navbar></app-navbar>
+<div class="container mt-5">
+    <!-- Services Section -->
+    <div class="row mb-5 align-items-center">
+      <div class="col-md-6">
+        <img class="img-fluid service-image rounded animated fadeIn" alt="{{servicesTitle}}" src="{{servicesImage}}" />
+      </div>
+      <div class="col-md-6">
+        <div class="text-center">
+          <h2 class="animated fadeIn">{{servicesTitle}}</h2>
+          <h3 class="animated fadeIn">{{servicesDescription}}</h3>
+          <ul class="list-unstyled">
+            <li *ngFor="let service of servicesList" class="animated fadeIn">
+              <i class="fas fa-check"></i> {{service}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Top Brand Names Section -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="text-center">
+          <h2 class="animated fadeIn">Top Brand Names on Our Trucks</h2>
+          <!-- PrimeNG Carousel -->
+          <p-carousel [value]="topBrands" [numVisible]="3" [autoplayInterval]="3000" [circular]="true" class="animated fadeIn">
+            <ng-template pTemplate="item" let-brand>
+              <div class="brand-slide">
+                <img [src]="'assets/logos/' + brand + '.avif'" [alt]="brand" />
+                <p>{{brand}}</p>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+  </div>
+  

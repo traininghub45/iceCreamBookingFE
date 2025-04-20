@@ -1,0 +1,118 @@
+/* Footer Styling */
+.footer {
+    background-image: url("../../../assets/images/istockphoto.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(52, 58, 64, 0.8); /* Dark overlay for better contrast */
+    color: #f8f9fa; /* Light text color */
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  
+  .footer-column {
+    margin-bottom: 20px;
+  }
+  
+  .footer-column h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    border-bottom: 2px solid #f8f9fa;
+    padding-bottom: 5px;
+  }
+  
+  .footer-column p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-link {
+    color: #f8f9fa; /* Light text color for links */
+    text-decoration: none;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+  }
+  
+  .footer-link:hover {
+    color: #ffffff; /* White color on hover */
+    border-bottom: 2px solid #ffffff; /* White underline on hover */
+  }
+  
+  .footer-social {
+    margin-top: 10px;
+  }
+  
+  .social-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    background-color: #495057; /* Button color */
+    color: #f8f9fa; /* Icon color */
+    font-size: 20px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .social-button:hover {
+    background-color: #ffffff; /* Background color on hover */
+    color: #343a40; /* Icon color on hover */
+    transform: scale(1.1); /* Slight scale effect on hover */
+  }
+  
+  .social-button.facebook {
+    background-color: #3b5998; /* Facebook color */
+  }
+  
+  .social-button.twitter {
+    background-color: #1da1f2; /* Twitter color */
+  }
+  
+  .social-button.instagram {
+    background-color: #e4405f; /* Instagram color */
+  }
+  
+  .social-button.linkedin {
+    background-color: #0077b5; /* LinkedIn color */
+  }
+  
+  .footer-copy {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+  
+  .footer-copy p {
+    margin: 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767px) {
+    .footer-column {
+      margin-bottom: 15px;
+    }
+  
+    .social-button {
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      font-size: 15px;
+    }
+  }
+  

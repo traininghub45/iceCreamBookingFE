@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+.layout-style {
+    font-family: 'Comfortaa', cursive !important;
+    font-size: 18px;
+    box-sizing: border-box;
+    background-image: url("../../assets/images/cc.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    background-size: cover;
+    color: #060606;
+    padding-top: 20px;
+}
+
+
+  

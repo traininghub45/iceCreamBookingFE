@@ -1,0 +1,131 @@
+/* Responsive image styling */
+@import url("../landing-styles.css");
+
+.service-image, .brand-slide img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .service-image:hover, .brand-slide img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Button Styling */
+  .btn-primary {
+    background-color: #343a40;
+    border: none;
+    color: #f8f9fa;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #ff5722;
+    color: #ffffff;
+    transform: scale(1.05);
+  }
+  
+  .btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5);
+  }
+  
+  /* Typography */
+  h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #343a40;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* Brand Slide Styling */
+  .brand-slide {
+    text-align: center;
+  }
+  
+  .brand-slide img {
+    width: 80%;
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .brand-slide p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  /* General Spacing */
+  .container {
+    padding: 20px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .row {
+    margin-bottom: 40px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 767px) {
+    .container {
+      padding: 10px;
+    }
+  
+    h2 {
+      font-size: 22px;
+    }
+  
+    h3 {
+      font-size: 18px;
+    }
+  
+    .brand-slide img {
+      max-width: 120px;
+    }
+  
+    .brand-slide p {
+      font-size: 16px;
+    }
+  }
+  
+  /* Animation Effects */
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+  
+  .fadeIn {
+    animation-name: fadeIn;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .p-highlight{
+    background-color: red !important;
+    color: red !important;
+ }
+ 

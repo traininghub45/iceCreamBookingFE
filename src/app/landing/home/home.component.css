@@ -1,0 +1,101 @@
+@import "../landing-styles.css";
+
+.hero-image, .service-image, .booking-image {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Animation for Hero Section */
+.hero-section {
+    opacity: 0;
+    animation: fadeInUp 1s forwards;
+}
+
+.hero-content {
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 1s 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation for Services Section */
+.services-section {
+    opacity: 0;
+    animation: fadeInUp 1s forwards;
+}
+
+.services-content {
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 1s 0.5s forwards;
+}
+
+/* Animation for Booking Section */
+.booking-section {
+    opacity: 0;
+    animation: fadeInUp 1s forwards;
+}
+
+.booking-content {
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 1s 0.5s forwards;
+}
+
+.img-fluid {
+    transition: transform 0.3s ease-in-out;
+}
+
+.img-fluid:hover {
+    transform: scale(1.05);
+}
+
+/* Button Styling */
+.btn-primary, .btn-secondary {
+    background-color: #343a40;
+    border: none;
+    color: #f8f9fa;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #343a40;
+}
+
+.btn-primary:hover {
+    background-color: #f10b0b;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .hero-image, .service-image, .booking-image {
+        max-height: 300px; /* Adjust as needed */
+    }
+}

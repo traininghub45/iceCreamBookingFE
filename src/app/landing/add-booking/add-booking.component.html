@@ -1,0 +1,57 @@
+<div class="layout-style">
+    <app-navbar></app-navbar>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ isEdit ? 'Edit' : 'Create' }} Booking</h2>
+    <form (ngSubmit)="onSubmit()" #bookingForm="ngForm" class="booking-form">
+      
+      <!-- Customer Name -->
+      <div class="form-group">
+        <label for="customerName">Customer Name</label>
+        <input type="text" id="customerName" class="form-control" [(ngModel)]="booking.userName" name="customerName" required>
+      </div>
+  
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="booking.email" name="email" required>
+      </div>
+  
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="tel" id="phoneNumber" class="form-control" [(ngModel)]="booking.phoneNumber" name="phoneNumber" required>
+      </div>
+  
+      <!-- Event Date -->
+      <div class="form-group">
+        <label for="eventDate">Event Date</label>
+        <input type="date" id="eventDate" class="form-control" [(ngModel)]="booking.eventDate" name="eventDate" required>
+      </div>
+  
+      <!-- Location -->
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" class="form-control" [(ngModel)]="booking.location" name="location" required>
+      </div>
+  
+      <!-- Number of Guests -->
+      <div class="form-group">
+        <label for="numberOfGuests">Number of Guests</label>
+        <input type="number" id="numberOfGuests" class="form-control" [(ngModel)]="booking.numberOfGuests" name="numberOfGuests" required>
+      </div>
+  
+      <!-- Ice Cream Preferences -->
+      <div class="form-group">
+        <label for="iceCreamPreferences">Ice Cream Preferences</label>
+        <textarea id="iceCreamPreferences" class="form-control" [(ngModel)]="booking.iceCreamPreferences" name="iceCreamPreferences"></textarea>
+      </div>
+  
+      <!-- Buttons -->
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-submit">Save Booking</button>
+        <button type="button" (click)="cancel()" class="btn btn-cancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <app-footer></app-footer>
+  </div>
