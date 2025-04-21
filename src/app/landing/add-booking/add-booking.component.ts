@@ -1,48 +1,57 @@
 import { Component } from '@angular/core';
-import { Booking } from '../../shared/interfaces/booking-model';
 import { BookingService } from '../../shared/services/booking.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ValidationMessageComponent } from '../../core/validation-message/validation-message.component';
 
 @Component({
   selector: 'app-add-booking',
   templateUrl: './add-booking.component.html',
-  styleUrl: './add-booking.component.css'
+  styleUrl: './add-booking.component.css',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ValidationMessageComponent // ✅ Import your reusable component here
+  ],
 })
 export class AddBookingComponent {
-  booking: Booking = {
-    eventDate: new Date(),
-    phoneNumber:'',
-    email:'',
-    numberOfGuests: 0,
-    isApproved: false,
-    location: '',
-    iceCreamPreferences: ''
-  };
-  isEdit: boolean = false;
+
+  bookingForm!: FormGroup;
 
   constructor(
     private bookingService: BookingService,
     private router: Router,
-    private route: ActivatedRoute
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.isEdit = true;
-      this.bookingService.getBooking(Number(id)).subscribe(data => this.booking = data);
-    }
+    this.buildForm();
+  }
+
+  buildForm(){
+    this.bookingForm = this.fb.group({
+      userName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', Validators.required],
+      eventDate: ['', Validators.required],
+      location: ['', Validators.required],
+      numberOfGuests: [0, [Validators.required, Validators.min(1)]],
+      iceCreamPreferences: ['', Validators.maxLength(255)]
+    });
   }
 
   onSubmit(): void {
-    if (this.isEdit) {
-      this.bookingService.updateBooking(this.booking.id!, this.booking).subscribe(() => this.router.navigate(['/bookings']));
+    if (this.bookingForm.valid) {
+      const bookingData = this.bookingForm.value;
+      this.bookingService.createBooking(bookingData).subscribe(() => this.router.navigate(['/bookings']));
     } else {
-      this.bookingService.createBooking(this.booking).subscribe(() => this.router.navigate(['/bookings']));
+      this.bookingForm.markAllAsTouched();
     }
   }
-
   cancel(): void {
+    this.bookingForm.reset();
     this.router.navigate(['/home']);
   }
 }
