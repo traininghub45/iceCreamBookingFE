@@ -1,68 +1,115 @@
-<div class="layout-style">
-  <div class="contact_us_6">
-    <div class="responsive-container-block container">
-      <form [formGroup]="feedbackForm" (ngSubmit)="send()" class="form-box">
-        <div class="container-block form-wrapper">
-          <div class="mob-text">
-            <p class="text-blk contactus-head">Get in Touch</p>
-            <p class="text-blk contactus-subhead">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Felis
-              diam lectus sapien.
-            </p>
-          </div>
-          <div class="responsive-container-block" id="i2cbk">
-            <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12 form-group" id="i10mt-3">
-              <p class="text-blk input-title">Full Name</p>
-              <input class="form-control" formControlName="fullName" type="text" id="fullName" name="fullName"
-                placeholder="Please enter first name..." />
+<div class="ice-cream-contact-container">
+  <div class="container py-4">
+    <div class="row g-4">
+      <!-- Contact Form Column -->
+      <div class="col-lg-6">
+        <div class="card border-0 p-4 h-100">
+          <h2 class="mb-3 fw-bold">Contact Us</h2>
+          <p class="mb-4">
+            Have questions or feedback? We'd love to hear from you! Fill out the form below and our team will get back to you shortly.
+          </p>
+          
+          <form [formGroup]="feedbackForm" (ngSubmit)="send()">
+            <!-- Full Name -->
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="fullName" formControlName="fullName" placeholder="John Doe">
               <app-validation-message [formGroup]="feedbackForm" controlName="fullName"></app-validation-message>
             </div>
-            <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12 form-group" id="ip1yp">
-              <p class="text-blk input-title">Email</p>
-              <input class="input" formControlName="email" type="email" id="email" name="email"
-                placeholder="Please enter email..." />
+            
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="john@example.com">
               <app-validation-message [formGroup]="feedbackForm" controlName="email"></app-validation-message>
             </div>
-            <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12 form-group" id="ih9wi">
-              <p class="text-blk input-title">Phone Number</p>
-              <p-inputMask mask="999-99-9999" formControlName="phoneNumber" id="phoneNumber" name="phoneNumber"
-                placeholder="999-99-9999" />
+            
+            <!-- Phone Number with Custom Styled p-inputMask -->
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label">Phone Number</label>
+              <p-inputMask 
+                mask="(999) 999-9999" 
+                formControlName="phoneNumber" 
+                placeholder="(123) 456-7890"
+                inputId="phoneNumber"
+                styleClass="custom-inputmask"
+                [style]="{'width': '100%'}">
+              </p-inputMask>
               <app-validation-message [formGroup]="feedbackForm" controlName="phoneNumber"></app-validation-message>
             </div>
-            <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12 form-group">
-              <p class="text-blk input-title">What Do You Have In Mind ?</p>
-              <textarea class="textinput" formControlName="message" id="message" name="message"
-                placeholder="Please enter query..."></textarea>
+            
+            <!-- Message -->
+            <div class="mb-4">
+              <label for="message" class="form-label">Your Message</label>
+              <textarea class="form-control" id="message" formControlName="message" rows="4" placeholder="How can we help you?"></textarea>
               <app-validation-message [formGroup]="feedbackForm" controlName="message"></app-validation-message>
             </div>
-          </div>
-          <button class="submit-btn" id="btn btn-submit" [disabled]="feedbackForm.invalid" >Submit</button>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100 py-2" [disabled]="feedbackForm.invalid">
+              Send Message
+            </button>
+          </form>
         </div>
-      </form>
-      <div class="responsive-cell-block wk-desk-7 wk-ipadp-12 wk-tab-12 wk-mobile-12" id="i772w">
-        <div class="map-part">
-          <p class="text-blk map-contactus-head" id="w-c-s-fc_p-1-dm-id">
-            Reach us at
-          </p>
-          <p class="text-blk map-contactus-subhead">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Felis diam
-            lectus sapien.
-          </p>
-          <div class="social-media-links mob">
-            <a href="https://facebook.com" target="_blank" class="social-button facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://twitter.com" target="_blank" class="social-button twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://instagram.com" target="_blank" class="social-button instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://linkedin.com" target="_blank" class="social-button linkedin">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
+      </div>
+      
+      <!-- Contact Info Column -->
+      <div class="col-lg-6">
+        <div class="card border-0 p-4 h-100">
+          <h2 class="mb-3 fw-bold">Our Contact Information</h2>
+          <p class="mb-4">Reach out to us through any of these channels:</p>
+          
+          <div class="contact-info mb-4">
+            <div class="d-flex align-items-start mb-3">
+              <i class="fas fa-map-marker-alt me-3 mt-1"></i>
+              <div>
+                <h5 class="fw-bold mb-1">Address</h5>
+                <p>123 Business Ave, Suite 100<br>New York, NY 10001</p>
+              </div>
+            </div>
+            
+            <div class="d-flex align-items-start mb-3">
+              <i class="fas fa-phone-alt me-3 mt-1"></i>
+              <div>
+                <h5 class="fw-bold mb-1">Phone</h5>
+                <p>+1 (555) 123-4567</p>
+              </div>
+            </div>
+            
+            <div class="d-flex align-items-start mb-4">
+              <i class="fas fa-envelope me-3 mt-1"></i>
+              <div>
+                <h5 class="fw-bold mb-1">Email</h5>
+                <p>{{ 'info@company.com' }}</p>
+              </div>
+            </div>
           </div>
-          <div class="map-box container-block"></div>
+          
+          <div class="social-links">
+            <h5>Follow Us</h5>
+            <div>
+              <a href="#" class="social-button facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-button twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-button instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-button linkedin">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="map-container">
+            <h5 class="fw-bold mb-3">Empire State Building</h5>
+            <p class="mb-3">20 W 34th St., New York, NY 10001<br>4.7 ★★★★★ 114,485 reviews</p>
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215573291234!2d-73.9878449241641!3d40.74844097138978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
         </div>
       </div>
     </div>
