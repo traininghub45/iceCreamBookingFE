@@ -1,20 +1,30 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ValidationMessageComponent } from '../../core/validation-message/validation-message.component';
+import { PrimeNgModule } from '../../primeng/primeng.module';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  styleUrl: './contact.component.css',
+  standalone: true,
+    imports: [
+      CommonModule,
+      ReactiveFormsModule,
+      ValidationMessageComponent,
+      PrimeNgModule 
+    ],
 })
 export class ContactComponent implements OnInit {
-
-  form: FormGroup=new FormGroup({
-    name : new FormControl(''),   
-    email : new FormControl(''),
-    phoneNumber :new FormControl(''),
-    message :new FormControl(''),
+  feedbackForm: FormGroup = new FormGroup({
+    fullName: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phoneNumber: new FormControl('', Validators.required),
+    message: new FormControl('', Validators.required),
   });
-  cover = 'https://img.freepik.com/free-vector/ice-cream-truck-concept-illustration_114360-1956.jpg?w=826'; // Relevant cover image
+  cover =
+    'https://img.freepik.com/free-vector/ice-cream-truck-concept-illustration_114360-1956.jpg?w=826';
   title = 'Contact Sweet Treats Ice Cream Rentals';
   description = 'We would love to hear from you!';
   content = `
@@ -27,17 +37,9 @@ export class ContactComponent implements OnInit {
   mail = 'info@sweettreats.com';
   email = 'mailto:info@sweettreats.com';
 
-  
+  constructor() {}
 
-  constructor() { 
-  
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  send(){
-    
-  }
-
+  send() {}
 }

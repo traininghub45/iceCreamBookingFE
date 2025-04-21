@@ -19,7 +19,6 @@ import { LandingLayoutComponent } from './landing-layout/landing-layout.componen
   declarations: [
     HomeComponent,
     AboutComponent,
-    ContactComponent,
     NavbarComponent,
     FooterComponent,
     OurServicesComponent,
