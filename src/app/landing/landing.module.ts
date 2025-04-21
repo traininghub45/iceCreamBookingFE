@@ -12,6 +12,7 @@ import { AddBookingComponent } from './add-booking/add-booking.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OurServicesComponent } from './our-services/our-services.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LandingLayoutComponent } from './landing-layout/landing-layout.component';
 
 
 @NgModule({
@@ -21,9 +22,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     ContactComponent,
     NavbarComponent,
     FooterComponent,
-    AddBookingComponent,
-    OurServicesComponent
-    
+    OurServicesComponent,
+    LandingLayoutComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,6 @@
 // core.module.ts
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { ValidationMessageComponent } from './validation-message/validation-message.component';
 
 @NgModule({
   providers: []
