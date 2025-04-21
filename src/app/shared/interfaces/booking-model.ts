@@ -4,7 +4,7 @@ export interface Booking {
     userName?: string;
     phoneNumber:string;
     email:string
-    eventDate: string;
+    eventDate: Date;
     location?: string;
     numberOfGuests: number;
     iceCreamPreferences?: string;
