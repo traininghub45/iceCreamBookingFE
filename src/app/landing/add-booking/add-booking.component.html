@@ -2,7 +2,7 @@
     <app-navbar></app-navbar>
 <div class="container mt-5">
     <h2 class="text-center mb-4">{{ isEdit ? 'Edit' : 'Create' }} Booking</h2>
-    <form (ngSubmit)="onSubmit()" #bookingForm="ngForm" class="booking-form">
+    <form #bookingForm="ngForm" class="booking-form">
       
       <!-- Customer Name -->
       <div class="form-group">
@@ -48,7 +48,7 @@
   
       <!-- Buttons -->
       <div class="text-center mt-4">
-        <button type="submit" class="btn btn-submit">Save Booking</button>
+        <button type="submit" class="btn btn-submit" (click)="onSubmit()">Save Booking</button>
         <button type="button" (click)="cancel()" class="btn btn-cancel">Cancel</button>
       </div>
     </form>

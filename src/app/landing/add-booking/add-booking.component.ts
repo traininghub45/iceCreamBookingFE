@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddBookingComponent {
   booking: Booking = {
-    eventDate: '',
+    eventDate: new Date(),
     phoneNumber:'',
     email:'',
     numberOfGuests: 0,
