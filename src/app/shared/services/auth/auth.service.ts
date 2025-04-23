@@ -1,55 +1,66 @@
-// auth.service.ts
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
-import { UserLogin } from '../../interfaces/user-login-model';
+import { IAuthResponse } from '../../models/IAuthResponse';
+import { User } from '../../interfaces/user-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private apiUrl = environment.apiUrl;
+  private currentUserSubject = new BehaviorSubject<User | null>(null);
+  public currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private tokenService: TokenService // Use TokenService for token management
-  ) {}
+  ) {
+    // Initialize user from storage if token exists
+    this.initializeCurrentUser();
+  }
 
-  login(userLogin: UserLogin): Observable<any | boolean> {
+  private initializeCurrentUser(): void {
+    const token = this.tokenService.getToken();
+    if (token) {
+      const user = this.tokenService.getUserFromToken(token);
+      this.currentUserSubject.next(user);
+    }
+  }
+
+  login(userLogin: User): Observable<IAuthResponse> {
     const url = `${this.apiUrl}/auth/login`;
-
-    return this.http.post<any>(url, userLogin).pipe(
-      tap((response: any) => {
-        this.tokenService.saveToken(response?.token); // Save token using TokenService
+     return this.http.post<IAuthResponse>(url, userLogin).pipe(
+      tap((response) => {
+        this.tokenService.saveToken(response.token);
+        if (response.user) {
+          this.tokenService.saveUser(response.user);
+          this.currentUserSubject.next(response.user);
+        }
       }),
-      catchError((error: HttpErrorResponse) => this.handleError(error)) // Use a dedicated error handler
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
     );
   }
 
   logout(): void {
     this.tokenService.clearToken();
-    this.router.navigate(['/login']); // Redirect to the login page
-    console.log('User logged out successfully.');
+    this.tokenService.clearUser();
+    this.currentUserSubject.next(null);
+    this.router.navigate(['auth/login']);
   }
 
-  // Centralized error handling
-  private handleError(error: HttpErrorResponse): Observable<boolean> {
-    console.error('Error occurred during login:', error);
+  get currentUserValue(): User | null {
+    return this.currentUserSubject.value;
+  }
 
-    if (error.status === 401) {
-      console.error('Unauthorized: Incorrect credentials');
-    } else if (error.status === 0) {
-      console.error('Network error: Please check your internet connection.');
-    } else {
-      console.error(`Backend returned code ${error.status}, body was: `, error.error);
-    }
-
-    // Optionally, you could rethrow the error with throwError(error) if further handling is needed
-    return of(false); // Return a default value or further handle as necessary
+  isAuthenticated(): boolean {
+    return this.tokenService.isAuthenticated();
   }
 }

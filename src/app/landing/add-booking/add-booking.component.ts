@@ -13,7 +13,7 @@ import { ValidationMessageComponent } from '../../core/validation-message/valida
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ValidationMessageComponent // ✅ Import your reusable component here
+    ValidationMessageComponent
   ],
 })
 export class AddBookingComponent {
@@ -44,8 +44,7 @@ export class AddBookingComponent {
 
   onSubmit(): void {
     if (this.bookingForm.valid) {
-      const bookingData = this.bookingForm.value;
-      this.bookingService.createBooking(bookingData).subscribe(() => this.router.navigate(['/bookings']));
+      this.bookingService.createBooking(this.bookingForm.value).subscribe(() => this.router.navigate(['/bookings']));
     } else {
       this.bookingForm.markAllAsTouched();
     }

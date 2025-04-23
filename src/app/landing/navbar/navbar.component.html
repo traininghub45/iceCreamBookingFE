@@ -28,7 +28,7 @@
             <a class="nav-link text-white" [routerLink]="['auth/login']" *ngIf="!isLoggedIn">
               <i class="fas fa-sign-in-alt"></i> Login
             </a>
-            <a class="nav-link text-white" href="#" (click)="logout()" *ngIf="isLoggedIn">
+            <a class="nav-link text-white" href="#" (click)="logout()" [routerLink]="['auth/login']" *ngIf="isLoggedIn">
               <i class="fas fa-sign-out-alt"></i> Logout
             </a>
           </li>

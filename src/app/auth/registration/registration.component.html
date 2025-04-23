@@ -9,30 +9,18 @@
                 </div>
                 <span>or use your email for registration</span>
                 <input type="text" placeholder="Full Name" formControlName="fullName" />
-                <div *ngIf="submitted && fullName.errors" class="error">
-                  <div *ngIf="fullName.errors?.['required']">Full Name is required</div>
-                  <div *ngIf="fullName.errors?.['minlength']">Full Name must be at least 3 characters</div>
-                </div>
-                
+                <app-validation-message [formGroup]="registrationForm" controlName="fullName"></app-validation-message>
+
                 <input type="email" placeholder="Email" formControlName="email" />
-                <div *ngIf="submitted && email.errors" class="error">
-                  <div *ngIf="email.errors?.['required']">Email is required</div>
-                  <div *ngIf="email.errors?.['email']">Email must be a valid email address</div>
-                </div>
-                
+                <app-validation-message [formGroup]="registrationForm" controlName="email"></app-validation-message>
+            
                 <input type="password" placeholder="Password" formControlName="password" />
-                <div *ngIf="submitted && password.errors" class="error">
-                  <div *ngIf="password.errors?.['required']">Password is required</div>
-                  <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters</div>
-                </div>
+                <app-validation-message [formGroup]="registrationForm" controlName="password"></app-validation-message>
                 
                 <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" />
-                <div *ngIf="submitted && confirmPassword.errors" class="error">
-                  <div *ngIf="confirmPassword.errors?.['required']">Confirm Password is required</div>
-                  <div *ngIf="confirmPassword.errors?.['mustMatch']">Passwords must match</div>
-                </div>
+                <app-validation-message [formGroup]="registrationForm" controlName="confirmPassword"></app-validation-message>
                 
-                <button type="submit">Sign Up</button>
+                <button type="submit" [disabled]="registrationForm.invalid">Sign Up</button>
               </form>
         </div>    
     
