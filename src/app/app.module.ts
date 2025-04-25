@@ -8,7 +8,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MaterialModule } from './material/material.module';
 import { PrimeNgModule } from './primeng/primeng.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpInterceptorService } from '../http-interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
 import { SharedModule } from './shared/shared.module';
@@ -31,7 +31,6 @@ export function tokenGetter() {
     PrimeNgModule,
     FontAwesomeModule,
     SharedModule ,
-    HttpClientModule, 
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -39,7 +38,9 @@ export function tokenGetter() {
     }),  
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },
+    provideHttpClient(
+      withInterceptors([HttpInterceptorService]),
+    ),
     provideAnimationsAsync(),
     
   ],
