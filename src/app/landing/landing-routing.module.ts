@@ -7,6 +7,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AddBookingComponent } from './add-booking/add-booking.component';
 import { OurServicesComponent } from './our-services/our-services.component';
 import { LandingLayoutComponent } from './landing-layout/landing-layout.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path: 'booking', component: AddBookingComponent },
       { path: 'services', component: OurServicesComponent },
+      { path: 'user-profile',   component: UserProfileComponent },
     ]
   }
 ];

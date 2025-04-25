@@ -1,0 +1,44 @@
+
+<p-toast position="bottom-right"></p-toast>
+<div class="container py-4">
+  <h3 class="mb-4">Edit Profile</h3>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row g-4">
+      <div class="col-md-4 text-center">
+        <img [src]="imagePreview || '../../../assets/images/default-user.avif'" alt="Profile Image"
+          class="img-thumbnail rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;" />
+        <input type="file" (change)="onImageSelected($event)" accept="image/*" class="form-control" />
+      </div>
+
+      <div class="col-md-8">
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Full Name</label>
+          <input type="text" class="form-control" formControlName="fullName"
+            [ngClass]="{ 'is-invalid': profileForm.get('fullName')?.invalid && profileForm.get('fullName')?.touched }" />
+          <app-validation-message [formGroup]="profileForm" controlName="fullName"></app-validation-message>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email" />
+          <app-validation-message [formGroup]="profileForm" controlName="email"></app-validation-message>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">User Name</label>
+          <input type="email" class="form-control" formControlName="userName" />
+          <app-validation-message [formGroup]="profileForm" controlName="userName"></app-validation-message>
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="text" class="form-control" formControlName="phoneNumber" />
+          <app-validation-message [formGroup]="profileForm" controlName="phoneNumber"></app-validation-message>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">
+          Save Changes
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

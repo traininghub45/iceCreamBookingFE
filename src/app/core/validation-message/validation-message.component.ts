@@ -16,6 +16,9 @@ import { FormGroup, AbstractControl } from '@angular/forms';
       <div *ngIf="control?.errors?.['maxlength']">
         Maximum length is {{ control?.errors?.['maxlength']?.requiredLength }}.
       </div>
+      <div *ngIf="control?.errors?.['minlength']">
+        Minimum length is {{ control?.errors?.['minlength']?.requiredLength }} characters.
+      </div>
       <div *ngIf="control?.errors?.['pattern']">Invalid format.</div>
       <div *ngIf="control?.errors?.['mustMatch']">Passwords do not match.</div>
     </div>

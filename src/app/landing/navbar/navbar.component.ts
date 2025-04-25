@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { AuthService } from '../../shared/services/auth/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -13,17 +14,11 @@ export class NavbarComponent {
     { menu: 'About us', menuurl: '/about' },
     { menu: 'Contact', menuurl: '/contact' }
   ];
-
-  isLoggedIn: boolean = false;
-
-  constructor(private authService: AuthService) {}
-
-  ngOnInit() {
-    this.isLoggedIn = !!localStorage.getItem('access_token');
-  }
-
+  private authService = inject(AuthService)
+  currentUser = this.authService.currentUserSignal;
+  isLoggedIn = computed(() => !!this.currentUser());
+  environment = environment.imageUrl
   logout() {
-    this.isLoggedIn = false;
     this.authService.logout();
   }
 }

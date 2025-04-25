@@ -9,13 +9,14 @@ import { MaterialModule } from './material/material.module';
 import { PrimeNgModule } from './primeng/primeng.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { SharedModule } from 'primeng/api';
 import { HttpInterceptorService } from '../http-interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
+import { SharedModule } from './shared/shared.module';
+import { environment } from '../environments/environment';
 
 export function tokenGetter() {
   // Provide a function to retrieve the token from storage
-  return localStorage.getItem('YOUR_TOKEN_KEY'); // Replace with your actual token key
+  return localStorage.getItem(environment.jwtTokenKey); // Replace with your actual token key
 }
 
 @NgModule({
