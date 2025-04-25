@@ -5,7 +5,9 @@ export interface User {
     fullName?:string;
     email?:string;
     password? :string;
-    creationDate? : Date 
-    createdBy? : string
+    creationDate? : Date;
+    createdBy? : string;
+    phoneNumber? : number;
+    userImgProfile: string | ArrayBuffer | null;
   }
   

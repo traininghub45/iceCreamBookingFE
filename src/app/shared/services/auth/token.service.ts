@@ -21,7 +21,19 @@ export class TokenService {
     return !!token && !this.jwtHelper.isTokenExpired(token);
   }
 
-  getUserFromToken(token: string): any {
+  getUserFromStorage(): User | null {
+    const userStr = localStorage.getItem(this.userKey);
+    if (!userStr) return null;
+
+    try {
+      return JSON.parse(userStr) as User;
+    } catch (e) {
+      console.error('Failed to parse user data', e);
+      return null;
+    }
+  }
+  
+  getUser(token: string): any {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       return {
