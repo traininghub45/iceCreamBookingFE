@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
+import { CanActivate, CanActivateChild, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(private tokenService: TokenService, private router: Router) {}
 
   canActivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    return this.checkAuthentication();
+  }
+
+  canActivateChild(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    return this.checkAuthentication();
+  }
+
+  private checkAuthentication(): boolean | UrlTree {
     if (this.tokenService.isAuthenticated()) {
       return true;
     } else {
