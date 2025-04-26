@@ -1,12 +1,35 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
+  animations: [
+    trigger('slideIn', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)', opacity: 0 }),
+        animate(
+          '300ms ease-out',
+          style({ transform: 'translateX(0)', opacity: 1 })
+        ),
+      ]),
+      transition(':leave', [
+        animate(
+          '300ms ease-in',
+          style({ transform: 'translateX(100%)', opacity: 0 })
+        ),
+      ]),
+    ]),
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class HomeComponent implements OnInit {
-
   // Hero Section
   businessName = 'Your Ice Cream Adventure';
   tagline = 'Delightful Ice Cream for Every Event';
@@ -19,7 +42,8 @@ export class HomeComponent implements OnInit {
   // Services Section
   servicesTitle = 'Our Services';
   servicesImage = 'assets/images/StockCakeIceCreamDelight1723453811.jpg';
-  servicesDescription = 'Enjoy a range of services tailored to your event needs';
+  servicesDescription =
+    'Enjoy a range of services tailored to your event needs';
   servicesContent = `
     - **Ice Cream Truck Rental**: Book our fully equipped ice cream truck for your event.
     - **Flavor Variety**: Choose from classic and gourmet ice cream flavors.
@@ -56,5 +80,4 @@ export class HomeComponent implements OnInit {
   `;
 
   ngOnInit() {}
-
 }
