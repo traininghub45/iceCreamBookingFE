@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { TokenService } from '../auth/token.service';
+import { CanActivate, CanActivateChild, Router, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { TokenService } from './token.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(private tokenService: TokenService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    return this.checkAuthentication();
+  }
+
+  canActivateChild(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    return this.checkAuthentication();
+  }
+
+  private checkAuthentication(): boolean | UrlTree {
     if (this.tokenService.isAuthenticated()) {
-      const requiredRole = route.data['role'];
-      if (requiredRole && this.tokenService.getUserRole() !== requiredRole) {
-        this.router.navigate(['/access-denied']); // Or any appropriate route
-        return false;
-      }
       return true;
+    } else {
+      return this.router.parseUrl('/auth/login');
     }
-    this.router.navigate(['/login']);
-    return false;
   }
 }
