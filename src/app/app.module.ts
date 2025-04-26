@@ -13,6 +13,7 @@ import { HttpInterceptorService } from '../http-interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function tokenGetter() {
   // Provide a function to retrieve the token from storage
@@ -31,6 +32,7 @@ export function tokenGetter() {
     PrimeNgModule,
     FontAwesomeModule,
     SharedModule ,
+    BrowserAnimationsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
