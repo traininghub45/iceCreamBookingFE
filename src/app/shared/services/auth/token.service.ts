@@ -46,19 +46,6 @@ export class TokenService {
     }
   }
 
-  getUserRole(): string {
-    const token = this.getToken();
-    if (!token) return '';
-
-    try {
-      const decodedToken = this.jwtHelper.decodeToken(token);
-      return decodedToken.role || ''; // Adjust based on your JWT structure
-    } catch (error) {
-      console.error('Failed to decode token:', error);
-      return '';
-    }
-  }
-
   saveToken(token: string): void {
     if (token) {
       localStorage.setItem(this.tokenKey, token);
