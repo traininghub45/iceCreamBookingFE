@@ -42,6 +42,7 @@ export class RegistrationComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
       creationDate: [new Date().toISOString()],
+      isActive :[true],
       createdBy : ['Admin']
     }, {
       validator: this.mustMatch('password', 'confirmPassword')
