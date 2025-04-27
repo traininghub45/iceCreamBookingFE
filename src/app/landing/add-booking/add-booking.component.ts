@@ -4,6 +4,7 @@ import {  Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ValidationMessageComponent } from '../../core/validation-message/validation-message.component';
+import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-add-booking',
@@ -23,7 +24,8 @@ export class AddBookingComponent {
   constructor(
     private bookingService: BookingService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -31,8 +33,9 @@ export class AddBookingComponent {
   }
 
   buildForm(){
+    const user = this.authService.currentUserSignal();
     this.bookingForm = this.fb.group({
-      userName: ['', Validators.required],
+      userId:[user?.id],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required],
       eventDate: ['', Validators.required],

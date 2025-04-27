@@ -1,0 +1,125 @@
+<div class="dashboard-container">
+  <div class="main-content-container">
+    <div class="content-area">
+      <div class="welcome-section p-4 mb-4 rounded">
+        <h2 class="text-white">Welcome to Your Ice Cream Dashboard</h2>
+        <p class="text-white">What would you like to enjoy today?</p>
+        <button pButton (click)="addNewBooking()" pRipple label="Order Now" icon="pi pi-shopping-cart"
+          class="p-button-rounded" style="background-color: #6c757d; border-color: #6c757d"></button>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-md-6 col-lg-3 mb-3">
+          <div class="stat-card p-3 rounded">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h6 class="text-white">Total Orders</h6>
+                <h3 class="text-white">{{stats.totalOrders}}</h3>
+              </div>
+              <i class="pi pi-shopping-cart text-white" style="font-size: 2rem"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+          <div class="stat-card p-3 rounded">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h6 class="text-white">Favorite Flavors</h6>
+                <h3 class="text-white">{{stats.favoriteFlavors}}</h3>
+              </div>
+              <i class="pi pi-heart text-white" style="font-size: 2rem"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+          <div class="stat-card p-3 rounded">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h6 class="text-white">Pending Orders</h6>
+                <h3 class="text-white">{{stats.pendingOrders}}</h3>
+              </div>
+              <i class="pi pi-clock text-white" style="font-size: 2rem"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+          <div class="stat-card p-3 rounded">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h6 class="text-white">Total Spent</h6>
+                <h3 class="text-white">${{stats.totalSpent}}</h3>
+              </div>
+              <i class="pi pi-wallet text-white" style="font-size: 2rem"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Orders and Recent Activity -->
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header bg-transparent">
+              <h5 class="mb-0 text-white">Upcoming Orders</h5>
+            </div>
+            <div class="card-body">
+<p-table [value]="upcomingOrders" styleClass="p-datatable-sm" [rows]="5">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Event Date</th>
+            <th>Number Of Guests</th>
+            <th>IceCream Preferences</th>
+            <th>Phone Number</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-booking>
+        <tr>
+            <td>{{booking.eventDate | date}}</td>
+            <td>{{booking.numberOfGuests}}</td>
+            <td>{{booking.iceCreamPreferences}}</td>
+            <td>{{booking.phoneNumber}}</td>
+            <td>{{booking.location}}</td>
+            <td>
+                <p-tag [value]="booking.isApproved?'Approved':'Pending'"
+                    [severity]="booking.isApproved ? 'success' : 'warning'"></p-tag>
+            </td>
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-sm p-mr-2" 
+                    (click)="editBooking(booking)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-sm p-button-danger" 
+                    (click)="deleteBooking(booking)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header bg-transparent">
+              <h5 class="mb-0 text-white">Recent Activity</h5>
+            </div>
+            <div class="card-body">
+              <p-timeline [value]="recentActivity" align="alternate" styleClass="custom-timeline">
+                <ng-template pTemplate="content" let-activity>
+                  <small class="text-white">{{activity.eventDate | date}}</small>
+                  <p class="text-white mb-0">{{activity.location}}</p>
+                  <small class="text-white-50">{{activity.numberOfGuests}}</small>
+                </ng-template>
+                <ng-template pTemplate="marker" let-activity>
+                  <span class="custom-marker shadow-1" [style.backgroundColor]="'var(--primary-color)'">
+                    <i class="pi pi-check"></i>
+                  </span>
+                </ng-template>
+              </p-timeline>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

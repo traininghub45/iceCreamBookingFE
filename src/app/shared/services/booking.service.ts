@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class BookingService {
-  private baseUrl = 'http://localhost:5000/api/bookings';
+  private baseUrl = `${environment.apiUrl}/bookings`;
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +30,11 @@ export class BookingService {
     return this.http.put<void>(`${this.baseUrl}/${id}`, booking);
   }
 
+  // Ensure this method returns an Observable<Booking[]>
+  getBookingsByUserId(userId:number): Observable<Booking[]> {
+    return this.http.get<Booking[]>(
+      `${this.baseUrl}/getByUserId?userId=${encodeURIComponent(userId)}&pageSize=${5}&pageNumber=${1}`
+    );  }
  
 
   deleteBooking(id: number): Observable<void> {

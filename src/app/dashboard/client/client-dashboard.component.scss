@@ -1,0 +1,122 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #343a40; /* Dark background to match your navbar */
+  color: white;
+}
+
+.main-content-container {
+  display: flex;
+  flex: 1;
+  padding-top: 80px; /* Account for fixed navbar */
+  padding-bottom: 60px; /* Account for footer */
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #495057;
+  padding: 1rem;
+  position: fixed;
+  height: calc(100vh - 140px); /* Account for navbar and footer */
+  /* Removed overflow-y: auto */
+}
+
+.content-area {
+  flex: 1;
+  margin-left: 250px; /* Same as sidebar width */
+  padding: 1rem;
+  /* Removed overflow-y: auto and height properties */
+  /* Added min-height to ensure content pushes footer down */
+  min-height: calc(100vh - 140px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .main-content-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+  }
+  
+  .content-area {
+    margin-left: 0;
+    /* Removed height: auto as it's no longer needed */
+  }
+}
+
+/* Content Styles (unchanged) */
+.welcome-section {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+}
+
+.stat-card {
+  background: rgba(108, 117, 125, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  background: rgba(108, 117, 125, 0.7);
+}
+
+.flavor-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+  height: 100%;
+}
+
+.flavor-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.card {
+  background-color: rgba(52, 58, 64, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Timeline customization */
+:host ::ng-deep .custom-timeline .p-timeline-event-opposite {
+  display: none;
+}
+
+:host ::ng-deep .custom-timeline .p-timeline-event-content {
+  padding: 0.5rem 0;
+}
+
+.custom-marker {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Table customization */
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: #495057;
+  color: white;
+  border-color: #6c757d;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
