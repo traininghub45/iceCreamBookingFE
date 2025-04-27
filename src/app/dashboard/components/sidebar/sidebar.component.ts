@@ -1,40 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-
-declare const $: any;
-declare interface RouteInfo {
-    path: string;
-    title: string;
-    icon: string;
-    class: string;
-}
-export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-    { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
-];
+import { CommonModule } from '@angular/common';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
+  standalone:true,
+  imports:[CommonModule],
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
-  menuItems: any[]=[];
+export class SidebarComponent {
+  @Input() clientBusinessName = 'Ice Cream Delight';
+  @Input() userAvatar = 'assets/default-avatar.png';
+  @Input() userName = 'Client User';
+  @Input() pendingOrders = 0;
+  
+  // Navigation permissions
+  @Input() showDashboard = true;
+  @Input() showFlavors = true;
+  @Input() showOrders = true;
+  @Input() showReports = false;
+  @Input() showAccount = true;
+  
+  @Output() logout= new EventEmitter();
+  @Output() toggleSidebar = new EventEmitter();
+  
+  isCollapsed = false;
 
-  constructor() { }
+  constructor(private router: Router) {}
 
-  ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+  toggleCollapse(): void {
+    this.isCollapsed = !this.isCollapsed;
+    this.toggleSidebar.emit(this.isCollapsed);
   }
-  isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
-      }
-      return true;
-  };
+
+  onLogout(): void {
+    this.logout.emit();
+  }
+
+  isActive(route: string): boolean {
+    return this.router.isActive(route, true);
+  }
 }

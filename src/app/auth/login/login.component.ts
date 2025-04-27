@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
   constructor(private router: Router,
-    private authService: AuthService,
+     private authService: AuthService,
     private fb: FormBuilder,
     private messageService: MessageService  ) {}
 
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value)
       .subscribe({
         complete: () => {
-          this.router.navigate(['']);
+          this.router.navigate(['dashboard/home']);
         },
         error: (err) => {
           this.showErrorMessage(err);

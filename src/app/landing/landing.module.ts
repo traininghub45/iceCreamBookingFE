@@ -31,6 +31,12 @@ import { LandingLayoutComponent } from './landing-layout/landing-layout.componen
     ReactiveFormsModule,
     FormsModule,
     LeafletModule
+  ],
+  exports:[
+    AboutComponent,
+    NavbarComponent,
+    FooterComponent,
+    OurServicesComponent,
   ]
 })
 export class LandingModule { }

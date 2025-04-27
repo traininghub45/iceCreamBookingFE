@@ -1,6 +1,6 @@
 // booking.model.ts
 export interface Booking {
-    id?: number;
+    id: number;
     userName?: string;
     phoneNumber:string;
     email:string

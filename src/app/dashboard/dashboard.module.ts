@@ -1,24 +1,39 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { ComponentsModule } from './components/components.module';
+import { UserDashboardComponent } from './client/client-dashboard.component';
+import { PrimeNgModule } from '../primeng/primeng.module';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { LandingModule } from '../landing/landing.module';
+import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+
 
 
 
 @NgModule({
   declarations: [
-    AdminLayoutComponent,
+    UserDashboardComponent,
+    DashboardLayoutComponent,
   ],
   imports: [
     DashboardRoutingModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    ComponentsModule,
-  ]
-})
+    PrimeNgModule,
+    LandingModule,
+    NavbarComponent,
+    SidebarComponent
+    
+  ],
+providers:[
+  DialogService,
+  ConfirmationService,
+  MessageService,
+  DatePipe
+]})
 export class DashboardModule { }
