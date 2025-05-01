@@ -1,7 +1,7 @@
 // booking.model.ts
 export interface Booking {
     id: number;
-    userName?: string;
+    userId: number;
     phoneNumber:string;
     email:string
     eventDate: Date;
