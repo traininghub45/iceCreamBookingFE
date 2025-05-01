@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ValidationMessageComponent } from '../../core/validation-message/validation-message.component';
+import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
 import { PrimeNgModule } from '../../primeng/primeng.module';
 import { ContactService } from '../../shared/services/contact.service';
 import { MessageService } from 'primeng/api';

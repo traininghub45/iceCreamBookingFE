@@ -1,7 +1,7 @@
 <p-toast position="bottom-right"></p-toast>
 <div class="container mt-5" id="container" #container>
     <div class="form-container sign-in-container">
-      <form (ngSubmit)="login()" [formGroup]="loginForm">
+      <form (ngSubmit)="onSubmitLoginForm()" [formGroup]="loginForm">
         <h1>Sign in</h1>
         <div class="social-container">
             <a href="https://facebook.com" target="_blank" class="social-button facebook">
@@ -17,7 +17,7 @@
           <app-validation-message [formGroup]="loginForm" controlName="email"></app-validation-message>
         <input type="password" formControlName="password" placeholder="Password"/>
           <app-validation-message [formGroup]="loginForm" controlName="Password"></app-validation-message>
-        <a href="#">Forgot your password?</a>
+        <a (click)="ShowPopup()" class="forgot-password-link">Forgot your password?</a>
         <button [disabled]="loginForm.invalid" type="submit">Sign In</button>
       </form>
     </div>
@@ -31,3 +31,26 @@
       </div>
     </div>
 </div>
+
+<app-modal
+size="modal-md"
+header="Forgot Password"
+#forgotPassword
+[alwaysRender]="true"
+[staticBackdrop]="true"
+[showCloseButton]="true">
+<ng-template #mBody>
+      <form (ngSubmit)="onSubmitForgotForm()" [formGroup]="forgotForm">
+        <p class="subtitle">Enter your email to receive a password reset link</p>
+        <input type="email" formControlName="email" placeholder="Email" />
+        <app-validation-message [formGroup]="forgotForm" controlName="email"></app-validation-message>
+        <button [disabled]="forgotForm.invalid" type="submit">SEND RESET LINK</button>
+      </form>
+</ng-template>
+
+<!-- <ng-template #mFooter>
+  <button class="btn btn-primary" (click)="confirm()">Confirm</button>
+  <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+</ng-template> -->
+
+</app-modal>
