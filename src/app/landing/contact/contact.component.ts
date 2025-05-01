@@ -1,6 +1,6 @@
 // contact.component.ts
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ValidationMessageComponent } from '../../core/validation-message/validation-message.component';
 import { PrimeNgModule } from '../../primeng/primeng.module';
@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
   ],
   providers: [MessageService]
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent {
   feedbackForm: FormGroup = new FormGroup({
     fullName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -40,15 +40,13 @@ export class ContactComponent implements OnInit {
     address: '123 Ice Cream Street, Dessert City'
   };
 
-  isSubmitting: boolean = false;
+  isSubmitting = false;
 
   constructor(
     private contactService: ContactService,
     private messageService: MessageService,
     private router: Router
   ) {}
-
-  ngOnInit(): void {}
 
   async send() {
     if (this.feedbackForm.valid) {

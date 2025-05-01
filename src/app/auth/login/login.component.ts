@@ -7,6 +7,7 @@ import { ValidationMessageComponent } from '../../core/validation-message/valida
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  private showErrorMessage(error: any): void {
+  private showErrorMessage(error: HttpErrorResponse): void {
     let detail = 'An unexpected error occurred';
     if (error.status === 401) {
       detail = 'Invalid username or password';
