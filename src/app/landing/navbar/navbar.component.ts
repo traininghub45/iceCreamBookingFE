@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  Navs: any[] = [
+  Navs = [
     { menu: 'Home', menuurl: '/' },
     { menu: 'Services', menuurl: '/services' },
     { menu: 'About us', menuurl: '/about' },
