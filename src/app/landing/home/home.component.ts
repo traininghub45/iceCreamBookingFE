@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +29,7 @@ import { Component, OnInit } from '@angular/core';
     ]),
   ],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   // Hero Section
   businessName = 'Your Ice Cream Adventure';
   tagline = 'Delightful Ice Cream for Every Event';
@@ -79,5 +79,4 @@ export class HomeComponent implements OnInit {
     - **Loyalty Program**: Book three events and get the fourth at half price.
   `;
 
-  ngOnInit() {}
 }

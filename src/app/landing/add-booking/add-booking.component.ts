@@ -22,6 +22,7 @@ import { Observable } from 'rxjs';
   imports: [CommonModule, ReactiveFormsModule, ValidationMessageComponent],
 })
 export class AddBookingComponent implements OnInit {
+
   bookingForm!: FormGroup;
   public config = inject(DynamicDialogConfig);
   header = 'Create Booking';

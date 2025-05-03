@@ -33,15 +33,15 @@ export class TokenService {
     }
   }
   
-  getUser(token: string): any {
+  getUser(token: string): Pick<User, 'id' | 'userName' | 'email'> | null {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       return {
         id: payload.nameid,
-        username: payload.sub,
+        userName: payload.sub,
         email: payload.email
       };
-    } catch (e) {
+    } catch (_error) {
       return null;
     }
   }

@@ -30,6 +30,13 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",   // Ignore unused function args starting with _
+          "caughtErrorsIgnorePattern": "^_"  // Ignore unused catch args starting with _
+        }
+      ]
     },
   },
   {
@@ -38,6 +45,8 @@ module.exports = tseslint.config(
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
-    rules: {},
+    rules: {
+      "@angular-eslint/template/elements-content": "off"
+    },
   }
 );

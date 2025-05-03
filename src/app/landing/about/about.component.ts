@@ -18,8 +18,5 @@ export class AboutComponent {
     Let us help you create sweet memories with our unique ice cream rental service!
   `;
   cover1 = 'https://img.freepik.com/free-vector/ice-cream-cone-pattern_23-2148683428.jpg?w=740'; // Additional image related to ice cream
-  constructor() { }
 
-  ngOnInit(): void {
-  }
 }
