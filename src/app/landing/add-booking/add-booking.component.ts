@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookingService } from '../../shared/services/booking.service';
 import {  Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -17,7 +17,7 @@ import { AuthService } from '../../shared/services/auth/auth.service';
     ValidationMessageComponent
   ],
 })
-export class AddBookingComponent {
+export class AddBookingComponent implements OnInit {
 
   bookingForm!: FormGroup;
 
