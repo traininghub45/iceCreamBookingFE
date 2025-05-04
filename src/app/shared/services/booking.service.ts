@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Booking } from '../interfaces/booking-model';
 import { environment } from '../../../environments/environment';
+import { PagedResult } from '../interfaces/paged-result-model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,9 @@ export class BookingService {
   }
 
   // Ensure this method returns an Observable<Booking[]>
-  getBookingsByUserId(userId:number): Observable<Booking[]> {
-    return this.http.get<Booking[]>(
-      `${this.baseUrl}/getByUserId?userId=${encodeURIComponent(userId)}&pageSize=${5}&pageNumber=${1}`
+  getBookingsByUserId(userId:number,skip:number,take:number): Observable<PagedResult<Booking>> {
+    return this.http.get<PagedResult<Booking>>(
+      `${this.baseUrl}/getByUserId?userId=${encodeURIComponent(userId)}&skip=${skip}&take=${take}`
     );  }
  
 

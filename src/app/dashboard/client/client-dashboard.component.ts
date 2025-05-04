@@ -5,6 +5,7 @@ import { AuthService } from '../../shared/services/auth/auth.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Booking } from '../../shared/interfaces/booking-model';
 import { AddBookingComponent } from '../../landing/add-booking/add-booking.component';
+import { TablePageEvent } from 'primeng/table';
 
 @Component({
   selector: 'app-client-dashboard',
@@ -19,10 +20,17 @@ export class UserDashboardComponent implements OnInit {
   private authService = inject(AuthService);
   ref: DynamicDialogRef | undefined;
   bookings: Booking[] = [];
+  totalRecords = 0;
 
-  upcomingOrders: Booking[] = [];
-  recentActivity: Booking[] = [];
+  get upcomingOrders() {
+    return this.bookings.filter(
+      (x) => new Date(x.eventDate) > new Date()
+    );
+  }
 
+  get recentActivity(){
+    return this.bookings.slice(-3);
+  }
   // Stats for the dashboard cards
   stats = {
     totalOrders: 12,
@@ -33,19 +41,22 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getBookings();
   }
-  getBookings(){
-    this.bookingService.getBookingsByUserId(this.authService.currentUserSignal()?.id as number).subscribe((res) => {
-      this.bookings = res;
+  trackByFn(index: number, item:Booking) {
+    return item.id;
+  }
+  getBookings(event?:TablePageEvent){
+    console.log(event)
+    const skip = event?.first ?? 0;
+    const take = event?.rows ?? 5;
+    this.bookingService.getBookingsByUserId(this.authService.currentUserSignal()?.id as number,skip,take).subscribe((res) => {
+      this.bookings = res.data;
+      this.totalRecords = res.totalCount;
       this.stats = {
         totalOrders: this.bookings.length,
         pendingOrders: this.bookings.filter((x) => !x.isApproved).length,
         favoriteFlavors: 2,
         totalSpent: 55,
       };
-      this.upcomingOrders = this.bookings.filter(
-        (x) => new Date(x.eventDate) > new Date()
-      );
-      this.recentActivity = this.bookings.slice(-3);
     });
   }
   addNewBooking() {

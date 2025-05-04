@@ -14,7 +14,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <div>
                 <h6 class="text-white">Total Orders</h6>
-                <h3 class="text-white">{{stats.totalOrders}}</h3>
+                <h3 class="text-white">{{totalRecords}}</h3>
               </div>
               <i class="pi pi-shopping-cart text-white" style="font-size: 2rem"></i>
             </div>
@@ -63,7 +63,9 @@
               <h5 class="mb-0 text-white">Upcoming Orders</h5>
             </div>
             <div class="card-body">
-<p-table [value]="upcomingOrders" styleClass="p-datatable-sm" [rows]="5">
+<p-table [value]="upcomingOrders" styleClass="p-datatable-sm" [rows]="5" [lazy]="true" [totalRecords]="totalRecords"  [paginator]="true" 
+(onPage)="getBookings($event)"
+ [rowTrackBy]="trackByFn">
     <ng-template pTemplate="header">
         <tr>
             <th>Event Date</th>
