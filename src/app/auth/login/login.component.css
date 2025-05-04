@@ -257,4 +257,18 @@ input {
   .social-button.linkedin {
     background-color: #0077b5; /* LinkedIn color */
   }
+  .forgot-password-link {
+	display: inline-block;
+	margin-top: 10px;
+	font-size: 0.9rem;
+	color: #0d0d0d;
+	text-decoration: none;
+	cursor: pointer;
+	transition: color 0.2s ease;
+  }
+  
+  .forgot-password-link:hover {
+	color: #0d0d0d;
+	text-decoration: underline;
+  }
   

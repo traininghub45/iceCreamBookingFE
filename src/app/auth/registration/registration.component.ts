@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ValidationMessageComponent } from '../../core/validation-message/validation-message.component';
+import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 

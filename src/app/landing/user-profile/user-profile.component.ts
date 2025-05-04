@@ -2,7 +2,7 @@ import { Component, inject, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ValidationMessageComponent } from '../../core/validation-message/validation-message.component';
+import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';

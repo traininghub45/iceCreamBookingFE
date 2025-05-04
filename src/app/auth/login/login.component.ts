@@ -1,13 +1,14 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, inject, OnInit, ViewChild} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ValidationMessageComponent } from '../../core/validation-message/validation-message.component';
+import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ModalComponent } from '../../core/component/modal/modal.component';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -19,30 +20,41 @@ import { HttpErrorResponse } from '@angular/common/http';
     CommonModule,
     ReactiveFormsModule,
     ValidationMessageComponent,
-    ToastModule 
+    ToastModule,
+    ModalComponent
   ],
   providers: [MessageService]
 })
 export class LoginComponent implements OnInit {
+  
+  @ViewChild('forgotPassword') forgotPassword!: ModalComponent;
   loginForm!: FormGroup;
-
-  constructor(private router: Router,
-     private authService: AuthService,
-    private fb: FormBuilder,
-    private messageService: MessageService  ) {}
+  forgotForm!: FormGroup;
+  private userService = inject(UserService);
+  private router = inject(Router);
+  private authService = inject(AuthService);
+  private fb = inject(FormBuilder);
+  private messageService = inject(MessageService);
 
   ngOnInit(): void {
-    this.buildForm();
+    this.buildLoginForm();
+    this.buildForgotForm();
   }
 
-  buildForm(){
+  buildForgotForm(){
+    this.forgotForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]]
+    })
+  }
+
+  buildLoginForm(){
     this.loginForm = this.fb.group({
       email: ['', [Validators.required]],
       password: ['', Validators.required],
     });
   }
 
-  login(): void {
+  onSubmitLoginForm(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
@@ -53,24 +65,44 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['dashboard/home']);
         },
         error: (err) => {
-          this.showErrorMessage(err);
-        }
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: err.error?.message || 'Failed to Login',
+            life: 5000
+          });        }
       });
   }
 
-  private showErrorMessage(error: HttpErrorResponse): void {
-    let detail = 'An unexpected error occurred';
-    if (error.status === 401) {
-      detail = 'Invalid username or password';
-    } else if (error.status === 0) {
-      detail = 'Unable to connect to server';
+  ShowPopup(){
+    this.forgotPassword.show()
+  }
+
+  onSubmitForgotForm() {
+    if (this.forgotForm.invalid) {
+      return;
     }
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Login Failed',
-      detail: detail,
-      life: 5000
-    });
+
+    this.userService.forgotPassword(this.forgotForm.value.email)
+      .subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Password reset link sent to your email',
+            life: 5000
+          });
+          this.forgotPassword.hide();
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: err.error?.message || 'Failed to send reset email',
+            life: 5000
+          });
+        }
+      });
   }
 
   goToRegistraion() {

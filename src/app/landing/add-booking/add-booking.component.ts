@@ -3,7 +3,7 @@ import { BookingService } from '../../shared/services/booking.service';
 import {  Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ValidationMessageComponent } from '../../core/validation-message/validation-message.component';
+import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
 import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
