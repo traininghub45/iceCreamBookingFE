@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { BookingService } from '../../shared/services/booking.service';
-import { AuthService } from '../../shared/services/auth/auth.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Booking } from '../../shared/interfaces/booking-model';
 import { AddBookingComponent } from '../../landing/add-booking/add-booking.component';
 import { TablePageEvent } from 'primeng/table';
+import { BookingService } from '../../core/services/booking.service';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-client-dashboard',

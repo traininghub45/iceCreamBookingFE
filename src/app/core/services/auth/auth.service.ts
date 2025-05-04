@@ -5,8 +5,8 @@ import { environment } from '../../../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
-import { IAuthResponse } from '../../models/IAuthResponse';
-import { User } from '../../interfaces/user-model';
+import { User } from '../../../shared/interfaces/user-model';
+import { IAuthResponse } from '../../../shared/models/IAuthResponse';
 
 @Injectable({
   providedIn: 'root',

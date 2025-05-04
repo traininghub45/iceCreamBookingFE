@@ -1,6 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core'; 
-import { TokenService } from './app/shared/services/auth/token.service';
+import { TokenService } from './app/core/services/auth/token.service';
 export const HttpInterceptorService: HttpInterceptorFn = (req, next) => {
     const authToken = inject(TokenService).getToken();
     const clonedReq = req.clone({

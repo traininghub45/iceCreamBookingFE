@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../interfaces/user-model';
 import { environment } from '../../../environments/environment';
+import { User } from '../../shared/interfaces/user-model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +32,11 @@ export class UserService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  forgotPassword(email: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/forgot-password`, { email });
+  forgotPassword(email: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/forgot-password`, { email });
   }
 
-  resetPassword(token: string, newPassword: string) {
-    return this.http.post(`${this.apiUrl}/reset-password`, { token, newPassword });
+  resetPassword(token: string, newPassword: string):Observable<void>  {
+    return this.http.post<void>(`${this.apiUrl}/reset-password`, { token, newPassword });
   }
 }

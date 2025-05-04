@@ -2,15 +2,15 @@ import { Component, inject, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
-import { AuthService } from '../../shared/services/auth/auth.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { DomSanitizer } from '@angular/platform-browser';
 import { User } from '../../shared/interfaces/user-model';
-import { UserService } from '../../shared/services/user.service';
-import { TokenService } from '../../shared/services/auth/token.service';
 import { environment } from '../../../environments/environment';
+import { ValidationMessageComponent } from '../../shared/components/validation-message/validation-message.component';
+import { AuthService } from '../../core/services/auth/auth.service';
+import { UserService } from '../../core/services/user.service';
+import { TokenService } from '../../core/services/auth/token.service';
 
 @Component({
   selector: 'app-user-profile',

@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { BookingService } from '../../shared/services/booking.service';
 import { Router } from '@angular/router';
 import {
   FormBuilder,
@@ -8,11 +7,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
-import { AuthService } from '../../shared/services/auth/auth.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Booking } from '../../shared/interfaces/booking-model';
 import { Observable } from 'rxjs';
+import { ValidationMessageComponent } from '../../shared/components/validation-message/validation-message.component';
+import { BookingService } from '../../core/services/booking.service';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-add-booking',
@@ -22,7 +22,6 @@ import { Observable } from 'rxjs';
   imports: [CommonModule, ReactiveFormsModule, ValidationMessageComponent],
 })
 export class AddBookingComponent implements OnInit {
-
   bookingForm!: FormGroup;
   public config = inject(DynamicDialogConfig);
   header = 'Create Booking';

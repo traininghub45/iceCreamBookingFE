@@ -1,6 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
-import { AuthService } from '../../shared/services/auth/auth.service';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
