@@ -1,8 +1,8 @@
 // contact.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ContactMessage } from '../interfaces/contact-message.model';
 import { environment } from '../../../environments/environment';
+import { ContactMessage } from '../../shared/interfaces/contact-message.model';
 
 @Injectable({
   providedIn: 'root'

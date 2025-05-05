@@ -2,9 +2,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Booking } from '../interfaces/booking-model';
 import { environment } from '../../../environments/environment';
-import { PagedResult } from '../interfaces/paged-result-model';
+import { Booking } from '../../shared/interfaces/booking-model';
+import { PagedResult } from '../../shared/interfaces/paged-result-model';
 
 @Injectable({
   providedIn: 'root'

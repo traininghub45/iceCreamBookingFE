@@ -7,7 +7,7 @@ import { AddBookingComponent } from './add-booking/add-booking.component';
 import { OurServicesComponent } from './our-services/our-services.component';
 import { LandingLayoutComponent } from './landing-layout/landing-layout.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { AuthGuard } from '../shared/services/auth/auth.guard';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {

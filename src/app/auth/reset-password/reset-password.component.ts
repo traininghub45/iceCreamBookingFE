@@ -3,10 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { UserService } from '../../shared/services/user.service';
+import { ValidationMessageComponent } from '../../shared/components/validation-message/validation-message.component';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -59,7 +59,7 @@ export class ResetPasswordComponent implements OnInit {
           });
           this.router.navigate(['/auth/login']);
         },
-        error: (err: any) => {
+        error: (err) => {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',

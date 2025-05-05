@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../shared/services/user.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ValidationMessageComponent } from '../../shared/components/validation-message/validation-message.component';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -23,13 +23,11 @@ import { ToastModule } from 'primeng/toast';
     providers: [MessageService]
 })
 export class RegistrationComponent implements OnInit {
-  registrationForm!: FormGroup;
+  private formBuilder = inject(FormBuilder) 
+  private router = inject(Router) 
+  private userService = inject(UserService) 
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private userService: UserService 
-  ) {}
+  registrationForm!: FormGroup;
 
   ngOnInit(): void {
     this.buildForm();

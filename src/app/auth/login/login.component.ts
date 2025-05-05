@@ -3,12 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
-import { AuthService } from '../../shared/services/auth/auth.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { ModalComponent } from '../../core/component/modal/modal.component';
-import { UserService } from '../../shared/services/user.service';
+import { ValidationMessageComponent } from '../../shared/components/validation-message/validation-message.component';
+import { ModalComponent } from '../../shared/components/modal/modal.component';
+import { UserService } from '../../core/services/user.service';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',

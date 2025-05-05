@@ -2,11 +2,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ValidationMessageComponent } from '../../core/component/validation-message/validation-message.component';
 import { PrimeNgModule } from '../../primeng/primeng.module';
-import { ContactService } from '../../shared/services/contact.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { ValidationMessageComponent } from '../../shared/components/validation-message/validation-message.component';
+import { ContactService } from '../../core/services/contact.service';
 
 @Component({
   selector: 'app-contact',
