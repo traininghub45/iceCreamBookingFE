@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { DomSanitizer } from '@angular/platform-browser';
 import { User } from '../../shared/interfaces/user-model';
 import { environment } from '../../../environments/environment';
 import { ValidationMessageComponent } from '../../shared/components/validation-message/validation-message.component';
@@ -30,7 +29,6 @@ export class UserProfileComponent implements OnInit {
 
   private authService = inject(AuthService);
   private fb = inject(FormBuilder);
-  private sanitizer = inject(DomSanitizer);
   private messageService= inject(MessageService);
   private userService= inject(UserService);
   private tokenService =  inject(TokenService);

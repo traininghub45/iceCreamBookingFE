@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserDashboardComponent } from './client/client-dashboard.component';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 import { AuthGuard } from '../core/guards/auth.guard';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,8 @@ const routes: Routes = [
     component: DashboardLayoutComponent,
     canActivateChild: [AuthGuard],
     children: [
-      {path: 'home', component:UserDashboardComponent}
+      {path: 'home', component:UserDashboardComponent},
+      { path: 'user-profile', component: UserProfileComponent },
     ]
   }
 ];
