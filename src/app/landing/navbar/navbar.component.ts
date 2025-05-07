@@ -1,5 +1,4 @@
 import { Component, computed, inject } from '@angular/core';
-import { environment } from '../../../environments/environment';
 import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
@@ -17,7 +16,6 @@ export class NavbarComponent {
   private authService = inject(AuthService)
   currentUser = this.authService.currentUserSignal;
   isLoggedIn = computed(() => !!this.currentUser());
-  environment = environment.imageUrl
   logout() {
     this.authService.logout();
   }
