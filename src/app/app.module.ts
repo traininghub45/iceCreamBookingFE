@@ -14,6 +14,9 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 export function tokenGetter() {
   // Provide a function to retrieve the token from storage
@@ -33,6 +36,12 @@ export function tokenGetter() {
     FontAwesomeModule,
     SharedModule ,
     BrowserAnimationsModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    }),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
