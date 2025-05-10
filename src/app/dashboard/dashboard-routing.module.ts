@@ -5,6 +5,7 @@ import { UserDashboardComponent } from './client/client-dashboard.component';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
     children: [
       {path: 'home', component:UserDashboardComponent},
       { path: 'user-profile', component: UserProfileComponent },
+      { path: 'cart', component: CartComponent }
     ]
   }
 ];

@@ -1,0 +1,27 @@
+<div class="cart-container">
+  <div *ngIf="(cartLoading$ | async) === false; else loading">
+    <div *ngIf="(cartItems$ | async)?.length; else emptyCart">
+      <div *ngFor="let item of (cartItems$ | async)" class="cart-item">
+        <div class="item-details">
+          <div class="item-name">{{ item.name }}</div>
+          <div class="item-price">{{ item.price | currency }}</div>
+        </div>
+        <div class="quantity-controls">
+          <button class="decrement-btn" (click)="updateItemQuantity(item.productId, item.quantity - 1)" [disabled]="item.quantity <= 1">-</button>
+          <span>{{ item.quantity }}</span>
+          <button class="increment-btn" (click)="updateItemQuantity(item.productId, item.quantity + 1)">+</button>
+          <button class="remove-btn" (click)="removeItem(item.productId)">Remove</button>
+        </div>
+      </div>
+      <div class="cart-total">
+        Total: {{ cartTotal$ | async | currency }}
+      </div>
+    </div>
+    <ng-template #emptyCart>
+      <div class="empty-cart">Your cart is empty</div>
+    </ng-template>
+  </div>
+  <ng-template #loading>
+    <div class="loading">Loading cart...</div>
+  </ng-template>
+</div> 

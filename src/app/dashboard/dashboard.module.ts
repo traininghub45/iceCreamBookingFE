@@ -10,14 +10,17 @@ import { LandingModule } from '../landing/landing.module';
 import { DashboardLayoutComponent } from './dashboard-layout/dashboard-layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-
-
-
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { CartComponent } from './cart/cart.component';
+import { cartReducer } from '../store/cart/cart.reducer';
+import { CartEffects } from '../store/cart/cart.effects';
 
 @NgModule({
   declarations: [
     UserDashboardComponent,
     DashboardLayoutComponent,
+    CartComponent
   ],
   imports: [
     DashboardRoutingModule,
@@ -27,13 +30,16 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     PrimeNgModule,
     LandingModule,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
     
+    StoreModule.forFeature('cart', cartReducer),
+    EffectsModule.forFeature([CartEffects])
   ],
-providers:[
-  DialogService,
-  ConfirmationService,
-  MessageService,
-  DatePipe
-]})
+  providers:[
+    DialogService,
+    ConfirmationService,
+    MessageService,
+    DatePipe
+  ]
+})
 export class DashboardModule { }
