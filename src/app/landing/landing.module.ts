@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OurServicesComponent } from './our-services/our-services.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LandingLayoutComponent } from './landing-layout/landing-layout.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LandingLayoutComponent } from './landing-layout/landing-layout.componen
     PrimeNgModule,
     ReactiveFormsModule,
     FormsModule,
-    LeafletModule
+    LeafletModule,
+    TranslateModule
   ],
   exports:[
     AboutComponent,

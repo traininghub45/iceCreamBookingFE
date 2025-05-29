@@ -1,0 +1,17 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "SERVICES": "Services",
+    "ABOUT_US": "About us",
+    "CONTACT": "Contact",
+    "ORDERS": "Orders",
+    "CUSTOMERS": "Customers",
+    "REPORTS": "Reports",
+    "PROFILE": "Profile",
+    "LOGOUT": "Logout"
+  },
+  "LANGUAGE": {
+    "EN": "English",
+    "AR": "Arabic"
+  }
+} 

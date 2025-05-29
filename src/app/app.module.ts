@@ -14,6 +14,13 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 export function tokenGetter() {
   // Provide a function to retrieve the token from storage
@@ -38,6 +45,14 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
       },
     }),  
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'en'
+    })
   ],
   providers: [
     provideHttpClient(

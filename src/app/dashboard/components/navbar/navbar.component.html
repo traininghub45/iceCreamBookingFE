@@ -10,30 +10,40 @@
       <ul class="nav-links">
         <li class="nav-item">
           <a routerLink="/dashboard" routerLinkActive="active">
-            <i class="fas fa-home"></i> Dashboard
+            <i class="fas fa-home"></i> {{ 'NAV.HOME' | translate }}
           </a>
         </li>
         <li class="nav-item">
           <a routerLink="/flavors" routerLinkActive="active">
-            <i class="fas fa-ice-cream"></i> Flavors
+            <i class="fas fa-ice-cream"></i> {{ 'NAV.SERVICES' | translate }}
           </a>
         </li>
         <li class="nav-item">
           <a routerLink="/orders" routerLinkActive="active">
-            <i class="fas fa-shopping-cart"></i> Orders
+            <i class="fas fa-shopping-cart"></i> {{ 'NAV.ORDERS' | translate }}
           </a>
         </li>
         <li class="nav-item">
           <a routerLink="/customers" routerLinkActive="active">
-            <i class="fas fa-users"></i> Customers
+            <i class="fas fa-users"></i> {{ 'NAV.CUSTOMERS' | translate }}
           </a>
         </li>
         <li class="nav-item">
           <a routerLink="/reports" routerLinkActive="active">
-            <i class="fas fa-chart-pie"></i> Reports
+            <i class="fas fa-chart-pie"></i> {{ 'NAV.REPORTS' | translate }}
           </a>
         </li>
       </ul>
+
+      <div class="language-switcher">
+        <button (click)="switchLanguage('en')" [class.active]="currentLang === 'en'">
+          {{ 'LANGUAGE.EN' | translate }}
+        </button>
+        <button (click)="switchLanguage('ar')" [class.active]="currentLang === 'ar'">
+          {{ 'LANGUAGE.AR' | translate }}
+        </button>
+      </div>
+
       <ul class="navbar-nav ms-auto" >
         <li class="nav-item user-dropdown dropdown" >
           <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,9 +51,9 @@
             <span class="user-fullname">{{ currentUser()?.fullName }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" [routerLink]="['user-profile']"><i class="fas fa-user me-2"></i>Profile</a></li>
+            <li><a class="dropdown-item" [routerLink]="['user-profile']"><i class="fas fa-user me-2"></i>{{ 'NAV.PROFILE' | translate }}</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" [routerLink]="['auth/login']"  (click)="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            <li><a class="dropdown-item" [routerLink]="['auth/login']"  (click)="logout()"><i class="fas fa-sign-out-alt me-2"></i>{{ 'NAV.LOGOUT' | translate }}</a></li>
           </ul>
         </li>
       </ul>
